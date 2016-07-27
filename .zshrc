@@ -1,3 +1,6 @@
+# エディタの設定
+export EDITOR=vim
+
 ## Emacs風キーバインド
 bindkey -e
 
@@ -19,8 +22,11 @@ autoload -Uz colors
 colors
 
 ## プロンプトの設定
-PROMPT="%F{cyan}[%n@%m]%{$reset_color%
+#PROMPT="%F{cyan}[%n@%m]%{$reset_color%
 
+#$ "
+
+PROMPT="%F{012}[%n@%m]%f %F{057}%K{000}%d%f%k
 $ "
 
 # 履歴の保存
@@ -43,4 +49,7 @@ setopt nobeep
 
 # コマンドの自動修正
 setopt correct
+
+# 最後のバックスラッシュを自動で削除しない
+setopt noautoremoveslash
 
