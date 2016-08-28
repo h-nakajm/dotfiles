@@ -35,6 +35,12 @@
 ;; スタートアップメッセージを表示させない
 (setq inhibit-startup-message t)
 
+;; scratchの初期メッセージ消去
+(setq initial-scratch-message "")
+
+;; ツールバー非表示
+(tool-bar-mode -1)
+
 ;; フォント設定
 (add-to-list 'default-frame-alist '(font . "Myrica M"))
 
@@ -54,7 +60,36 @@
 (column-number-mode t)
 
 ;; 行数を表示する
-(global-linum-mode t)
+ (global-linum-mode t)
+ (set-face-attribute 'linum nil
+;;                  :foreground "#800"
+                    :height 1.0)
+
+;; モードラインに行番号表示
+(line-number-mode t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; モードラインの割合表示を総行数表示
+(defvar my-lines-page-mode t)
+(defvar my-mode-line-format)
+
+(when my-lines-page-mode
+  (setq my-mode-line-format "%d")
+  (if size-indication-mode
+      (setq my-mode-line-format (concat my-mode-line-format " of %%I")))
+  (cond ((and (eq line-number-mode t) (eq column-number-mode t))
+         (setq my-mode-line-format (concat my-mode-line-format " (%%l,%%c)")))
+        ((eq line-number-mode t)
+         (setq my-mode-line-format (concat my-mode-line-format " L%%l")))
+        ((eq column-number-mode t)
+         (setq my-mode-line-format (concat my-mode-line-format " C%%c"))))
+
+  (setq mode-line-position
+        '(:eval (format my-mode-line-format
+                        (count-lines (point-max) (point-min))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 改行コードを表示する
 (setq eol-mnemonic-dos "(CRLF)")
@@ -63,6 +98,10 @@
 
 ;; スペース、タブなどを可視化する
 ;; (global-whitespace-mode 1)
+
+;; 行末の空白を強調表示
+(setq-default show-trailing-whitespace t)
+(set-face-background 'trailing-whitespace "#b14770")
 
 ;; タブ幅
 (custom-set-variables '(tab-width 4))
@@ -148,3 +187,8 @@
 (setq ac-use-menu-map t)       ;; 補完メニュー表示時にC-n/C-pで補完候補選択
 (setq ac-use-fuzzy t)          ;; 曖昧マッチ
 
+;; 同名バッファを分りやすくする
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+(setq uniquify-ignore-buffers-re "*[^*]+*")
