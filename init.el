@@ -35,6 +35,24 @@
 ;; スタートアップメッセージを表示させない
 (setq inhibit-startup-message t)
 
+;; 日時を表示
+(setq display-time-day-and-date t)  ;; 曜日・月・日
+(setq display-time-24hr-format t)   ;; 24時表示
+(display-time-mode t)
+
+;; ファイルサイズを表示
+;; (size-indication-mode t)
+
+;; カーソル行に下線を表示
+(setq hl-line-face 'underline)
+(global-hl-line-mode)
+
+;; スクロールバーを非表示
+(set-scroll-bar-mode nil)
+
+;; ビープ音を消す
+(set-message-beep 'silent)
+
 ;; scratchの初期メッセージ消去
 (setq initial-scratch-message "")
 
