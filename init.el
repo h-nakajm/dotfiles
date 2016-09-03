@@ -191,6 +191,13 @@
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for eww
+(setq eww-search-prefix "http://www.google.co.jp/search?q=")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; 同名バッファを分りやすくする
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
