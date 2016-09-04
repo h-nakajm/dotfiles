@@ -113,7 +113,7 @@
            (copy-region-as-kill (point)
                                 (progn (forward-visible-line arg) (point))))))
   (message (substring (car kill-ring-yank-pointer) 0 -1)))
-  
+
   (global-set-key (kbd "M-k") 'copy-whole-line)
   (global-set-key (kbd "M-K") 'kill-whole-line)
 
@@ -248,7 +248,7 @@
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-;;auto-completeの設定
+;; auto-completeの設定
 (require 'auto-complete)
 (global-auto-complete-mode t)
 (setq ac-use-menu-map t)       ;; 補完メニュー表示時にC-n/C-pで補完候補選択
@@ -266,11 +266,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; for Ruby
-(require 'ruby-electric)
-(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
-(setq ruby-electric-expand-delimiters-list nil)
+;; (require 'ruby-electric)
+;; (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+;; (setq ruby-electric-expand-delimiters-list nil)
 
-;; 同名バッファを分りやすくする
+;; 同名バッファを分かりやすくする
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
