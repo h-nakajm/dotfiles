@@ -51,13 +51,16 @@
 
 ;; カーソル行に下線を表示
 (setq hl-line-face 'underline)
-(global-hl-line-mode)
+(global-hl-line-mode t)
 
 ;; スクロールバーを非表示
 (set-scroll-bar-mode nil)
 
 ;; ビープ音を消す
 (set-message-beep 'silent)
+
+;; "yes or no" の選択を "y or n" にする
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; scratchの初期メッセージ消去
 (setq initial-scratch-message "")
@@ -250,6 +253,8 @@
 
 ;; auto-completeの設定
 (require 'auto-complete)
+(require 'auto-complete-config)
+(setq ac-quick-help-delay 0.5) ;; 補完候補を0.5秒で表示
 (global-auto-complete-mode t)
 (setq ac-use-menu-map t)       ;; 補完メニュー表示時にC-n/C-pで補完候補選択
 (setq ac-use-fuzzy t)          ;; 曖昧マッチ
@@ -275,4 +280,13 @@
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (setq uniquify-ignore-buffers-re "*[^*]+*")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for helm
+(require 'helm-config)
+(helm-mode 1)
+(define-key global-map (kbd "M-x") 'helm-M-x)
+(define-key global-map (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
