@@ -127,6 +127,10 @@
 ;; 対応する括弧を光らせる
 (show-paren-mode 1)
 
+;; 括弧の自動補完
+(require 'smartparens-config)
+(smartparens-global-mode t)
+
 ;; バックアップファイルを作成させない
 (setq make-backup-files nil)
 
@@ -215,6 +219,11 @@
 (setq eww-search-prefix "http://www.google.co.jp/search?q=")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for Ruby
+(require 'ruby-electric)
+(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+(setq ruby-electric-expand-delimiters-list nil)
 
 ;; 同名バッファを分りやすくする
 (require 'uniquify)
