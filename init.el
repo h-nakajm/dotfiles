@@ -83,6 +83,9 @@
 ;; Ctrl+hでBackSpace
 (keyboard-translate ?\C-h ?\C-?)
 
+;; Ctrl+uを無効化(IMEの切り替えに利用)
+(global-unset-key "\C-u")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Alt+kで1行コピー
