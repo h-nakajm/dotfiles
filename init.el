@@ -132,10 +132,13 @@
  (global-linum-mode t)
  (set-face-attribute 'linum nil
 ;;                  :foreground "#800"
-                    :height 1.0)
+					 :height 1.0)
+
+;; 5 桁分の表示領域を確保する
+ (setq linum-format "%5d |")
 
 ;; モードラインに行番号表示
-(line-number-mode t)
+ (line-number-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
