@@ -327,3 +327,23 @@
 
 ;; 未読ツイート件数を表示
 (twittering-enable-unread-status-notifier)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for multi-cursor, expand-region and smartrep
+(require 'expand-region)
+(require 'multiple-cursors)
+(require 'smartrep)
+
+;; C-,で選択範囲の拡大，C-M-,で選択範囲の縮小
+(global-set-key (kbd "C-,") 'er/expand-region)
+(global-set-key (kbd "C-M-,") 'er/contract-region)
+
+;; C-M-cでmulti-cursorを用いた編集など
+(global-set-key (kbd "C-M-c") 'mc/edit-lines)
+(global-set-key (kbd "C-M-r") 'mc/mark-all-in-region)
+(smartrep-define-key global-map "C-."
+  '(("C-t"      . 'mc/mark-next-like-this)
+    ("n"        . 'mc/mark-next-like-this)
+    ("p"        . 'mc/mark-previous-like-this)))
+
