@@ -72,13 +72,13 @@
 (add-to-list 'default-frame-alist '(font . "Myrica M"))
 
 ;; テーマの設定
-;;(load-theme 'deeper-blue' t)
+;; (load-theme 'zenburn' t)
 
 ;; Emacsのカラーテーマ
 ;; http://code.google.com/p/gnuemacscolorthemetest/
-(when (and (require 'color-theme nil t) (window-system))
-  (color-theme-initialize)
-  (color-theme-clarity))
+ (when (and (require 'color-theme nil t) (window-system))
+   (color-theme-initialize)
+   (color-theme-clarity))
 
 ;; Ctrl+hでBackSpace
 (keyboard-translate ?\C-h ?\C-?)
@@ -200,10 +200,6 @@
     (ding)))
 (setq ring-bell-function 'my-bell-function)
 
-;; for markdown
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
 ;; 1行ずつスクロール
 (setq scroll-conservatively 35
       scroll-margin 0
@@ -304,3 +300,30 @@
 
 ;; M-/でredo
 (global-set-key (kbd "M-/") 'undo-tree-redo)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for anzu
+;; 検索時に全体数と現在の位置を表示
+;; 常にanzu-modeを有効化
+(global-anzu-mode +1)
+
+;; モードラインにモード名を表示しない
+;; リージョン指定で置換を行った後，ハイライトを無効化
+;; 全体のマッチ数の上限を1000件に設定
+(custom-set-variables
+ '(anzu-mode-lighter "")
+ '(anzu-deactivate-region t)
+ '(anzu-search-threshold 1000))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for twittering-mode
+(require 'twittering-mode)
+
+;; アイコンを表示
+(setq twittering-icon-mode t)
+
+;; 未読ツイート件数を表示
+(twittering-enable-unread-status-notifier)
