@@ -296,3 +296,11 @@
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for undo-tree
+(require 'undo-tree)
+(global-undo-tree-mode)
+
+;; M-/でredo
+(global-set-key (kbd "M-/") 'undo-tree-redo)
