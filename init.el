@@ -72,16 +72,19 @@
 (add-to-list 'default-frame-alist '(font . "Myrica M"))
 
 ;; テーマの設定
-;;(load-theme 'deeper-blue' t)
+;; (load-theme 'zenburn' t)
 
 ;; Emacsのカラーテーマ
 ;; http://code.google.com/p/gnuemacscolorthemetest/
-(when (and (require 'color-theme nil t) (window-system))
-  (color-theme-initialize)
-  (color-theme-clarity))
+ (when (and (require 'color-theme nil t) (window-system))
+   (color-theme-initialize)
+   (color-theme-clarity))
 
 ;; Ctrl+hでBackSpace
 (keyboard-translate ?\C-h ?\C-?)
+
+;; Ctrl+uを無効化(IMEの切り替えに利用)
+(global-unset-key "\C-u")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -129,10 +132,13 @@
  (global-linum-mode t)
  (set-face-attribute 'linum nil
 ;;                  :foreground "#800"
-                    :height 1.0)
+					 :height 1.0)
+
+;; 5 桁分の表示領域を確保する
+ (setq linum-format "%5d |")
 
 ;; モードラインに行番号表示
-(line-number-mode t)
+ (line-number-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -193,10 +199,6 @@
               backward-char forward-char))
     (ding)))
 (setq ring-bell-function 'my-bell-function)
-
-;; for markdown
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; 1行ずつスクロール
 (setq scroll-conservatively 35
@@ -289,4 +291,59 @@
 (define-key global-map (kbd "M-x") 'helm-M-x)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for undo-tree
+(require 'undo-tree)
+(global-undo-tree-mode)
+
+;; M-/でredo
+(global-set-key (kbd "M-/") 'undo-tree-redo)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for anzu
+;; 検索時に全体数と現在の位置を表示
+;; 常にanzu-modeを有効化
+(global-anzu-mode +1)
+
+;; モードラインにモード名を表示しない
+;; リージョン指定で置換を行った後，ハイライトを無効化
+;; 全体のマッチ数の上限を1000件に設定
+(custom-set-variables
+ '(anzu-mode-lighter "")
+ '(anzu-deactivate-region t)
+ '(anzu-search-threshold 1000))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for twittering-mode
+(require 'twittering-mode)
+
+;; アイコンを表示
+(setq twittering-icon-mode t)
+
+;; 未読ツイート件数を表示
+(twittering-enable-unread-status-notifier)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; for multi-cursor, expand-region and smartrep
+(require 'expand-region)
+(require 'multiple-cursors)
+(require 'smartrep)
+
+;; C-,で選択範囲の拡大，C-M-,で選択範囲の縮小
+(global-set-key (kbd "C-,") 'er/expand-region)
+(global-set-key (kbd "C-M-,") 'er/contract-region)
+
+;; C-M-cでmulti-cursorを用いた編集など
+(global-set-key (kbd "C-M-c") 'mc/edit-lines)
+(global-set-key (kbd "C-M-r") 'mc/mark-all-in-region)
+(smartrep-define-key global-map "C-."
+  '(("C-t"      . 'mc/mark-next-like-this)
+    ("n"        . 'mc/mark-next-like-this)
+    ("p"        . 'mc/mark-previous-like-this)))
 
