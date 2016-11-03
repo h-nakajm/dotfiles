@@ -14,6 +14,12 @@ setopt list_packed
 # cdの履歴を保存
 setopt auto_pushd
 
+# ディレクトリ名だけでcd
+setopt auto_cd
+
+# 同じディレクトリをpushdしない
+setopt pushd_ignore_dups
+
 # 言語の設定
 export LANG=ja_JP.UTF-8
 
