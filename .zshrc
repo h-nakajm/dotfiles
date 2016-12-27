@@ -65,3 +65,5 @@ setopt correct
 # 最後のバックスラッシュを自動で削除しない
 setopt noautoremoveslash
 
+# 拡張ファイルグロブを有効にする
+setopt extended_glob
