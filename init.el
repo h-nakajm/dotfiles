@@ -86,6 +86,10 @@
 ;; Ctrl+uを無効化(IMEの切り替えに利用)
 (global-unset-key "\C-u")
 
+;; C-+とC--でフォントサイズ変更
+(define-key global-map (kbd "C-+") 'text-scale-increase)
+(define-key global-map (kbd "C--") 'text-scale-decrease)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Alt+kで1行コピー
