@@ -33,6 +33,9 @@ export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 # ls --colorをglsにalias
 alias gls="ls --color"
 
+# for cygwin to open
+alias open="cygstart"
+
 ## プロンプトの設定
 #PROMPT="%F{cyan}[%n@%m]%{$reset_color%
 
@@ -65,5 +68,7 @@ setopt correct
 # 最後のバックスラッシュを自動で削除しない
 setopt noautoremoveslash
 
-# 拡張ファイルグロブを有効にする
-setopt extended_glob
+# zsh-syntax-highlighting
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+	source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
