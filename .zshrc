@@ -3,6 +3,7 @@ export EDITOR=vim
 
 ## Emacs風キーバインド
 bindkey -e
+bindkey -r '^t'
 
 # 補完の強化
 autoload -U compinit
@@ -26,6 +27,7 @@ export LANG=ja_JP.UTF-8
 # 色の設定
 autoload -Uz colors
 colors
+export TERM=xterm-256color
 
 # lsに色を付ける
 export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
