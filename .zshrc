@@ -74,3 +74,12 @@ setopt noautoremoveslash
 if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
 	source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+show_buffer_stack() {
+  POSTDISPLAY="
+stack: $LBUFFER"
+  zle push-line
+}
+zle -N show_buffer_stack
+bindkey "^[q" show_buffer_stack
+
