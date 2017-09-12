@@ -83,3 +83,5 @@ stack: $LBUFFER"
 zle -N show_buffer_stack
 bindkey "^[q" show_buffer_stack
 
+# c-Jでコマンド入力中に改行
+bindkey '^J' self-insert
