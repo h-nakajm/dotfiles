@@ -324,13 +324,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; for twittering-mode
-(require 'twittering-mode)
+;; (require 'twittering-mode)
 
 ;; アイコンを表示
-(setq twittering-icon-mode t)
+;; (setq twittering-icon-mode t)
 
 ;; 未読ツイート件数を表示
-(twittering-enable-unread-status-notifier)
+;; (twittering-enable-unread-status-notifier)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
