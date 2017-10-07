@@ -9,9 +9,25 @@
 
 ;; load-pathに追加するフォルダ
 ;; 2つ以上フォルダを指定する場合の引数 => (add-to-load-path "elisp" "xxx" "xxx")
-(add-to-load-path "elisp")
+;; (add-to-load-path "elisp")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; MELPA
+(defvar my-favorite-package-list
+  '(smartparens
+    tabbar
+    js2-mode
+    auto-complete
+    helm
+    undo-tree
+    anzu
+    expand-region
+    multiple-cursors
+    smartrep
+    atom-one-dark-theme
+    yatex)
+  "packages to be installed")
 
 (require 'package)
 
@@ -29,6 +45,12 @@
 
 ;; 初期化
  (package-initialize)
+
+;; 未インストールパッケージをインストール
+(unless package-archive-contents (package-refresh-contents))
+(dolist (pkg my-favorite-package-list)
+  (unless (package-installed-p pkg)
+    (package-install pkg)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -73,6 +95,7 @@
 
 ;; テーマの設定
 ;; (load-theme 'zenburn' t)
+(load-theme 'atom-one-dark' t)
 
 ;; Emacsのカラーテーマ
 ;; http://code.google.com/p/gnuemacscolorthemetest/
@@ -138,6 +161,14 @@
 ;;                  :foreground "#800"
 					 :height 1.0)
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(linum ((t (:inherit (shadow default) :height 1.0)))))
+
+
 ;; 5 桁分の表示領域を確保する
  (setq linum-format "%5d |")
 
@@ -180,7 +211,18 @@
 (set-face-background 'trailing-whitespace "#b14770")
 
 ;; タブ幅
-(custom-set-variables '(tab-width 4))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(anzu-deactivate-region t)
+ '(anzu-mode-lighter "")
+ '(anzu-search-threshold 1000)
+ '(package-selected-packages
+   (quote
+	(smartrep multiple-cursors expand-region anzu undo-tree helm tabbar smartparens js2-mode auto-complete)))
+ '(tab-width 4))
 
 ;; 対応する括弧を光らせる
 (show-paren-mode 1)
@@ -316,10 +358,7 @@
 ;; モードラインにモード名を表示しない
 ;; リージョン指定で置換を行った後，ハイライトを無効化
 ;; 全体のマッチ数の上限を1000件に設定
-(custom-set-variables
- '(anzu-mode-lighter "")
- '(anzu-deactivate-region t)
- '(anzu-search-threshold 1000))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -350,4 +389,74 @@
   '(("C-t"      . 'mc/mark-next-like-this)
     ("n"        . 'mc/mark-next-like-this)
     ("p"        . 'mc/mark-previous-like-this)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;
+;; YaTeX
+;;
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+(setq auto-mode-alist
+      (append '(("\\.tex$" . yatex-mode)
+                ("\\.ltx$" . yatex-mode)
+                ("\\.cls$" . yatex-mode)
+                ("\\.sty$" . yatex-mode)
+                ("\\.clo$" . yatex-mode)
+                ("\\.bbl$" . yatex-mode)) auto-mode-alist))
+(setq YaTeX-inhibit-prefix-letter t)
+(setq YaTeX-kanji-code nil)
+(setq YaTeX-latex-message-code 'utf-8)
+(setq YaTeX-use-LaTeX2e t)
+(setq YaTeX-use-AMS-LaTeX t)
+(setq YaTeX-dvi2-command-ext-alist
+      '(("TeXworks\\|texworks\\|texstudio\\|mupdf\\|SumatraPDF\\|Preview\\|Skim\\|TeXShop\\|evince\\|atril\\|xreader\\|okular\\|zathura\\|qpdfview\\|Firefox\\|firefox\\|chrome\\|chromium\\|MicrosoftEdge\\|microsoft-edge\\|Adobe\\|Acrobat\\|AcroRd32\\|acroread\\|pdfopen\\|xdg-open\\|open\\|start" . ".pdf")))
+
+;(setq tex-command "ptex2pdf -u -l -ot \"-kanji=utf8 -no-guess-input-enc -synctex=1\"")
+(setq tex-command "ptex2pdf -l -od \"-f uptex-noEmbed-04.map -f otf-up-noEmbed.map\"")
+;(setq tex-command "lualatex -cmdx -synctex=1")
+;(setq tex-command "latexmk")
+;(setq tex-command "latexmk -e \"$latex=q/uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 %S/\" -e \"$bibtex=q/upbibtex %O %B/\" -e \"$biber=q/biber %O --bblencoding=utf8 -u -U --output_safechars %B/\" -e \"$makeindex=q/upmendex %O -o %D %S/\" -e \"$dvipdf=q/dvipdfmx %O -o %D %S/\" -norc -gg -pdfdvi")
+;(setq tex-command "latexmk -e \"$lualatex=q/lualatex -cmdx %O -synctex=1 %S/\" -e \"$bibtex=q/upbibtex %O %B/\" -e \"$biber=q/biber %O --bblencoding=utf8 -u -U --output_safechars %B/\" -e \"$makeindex=q/upmendex %O -o %D %S/\" -norc -gg -pdflua")
+(setq bibtex-command "latexmk -e \"$latex=q/uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 %S/\" -e \"$bibtex=q/upbibtex %O %B/\" -e \"$biber=q/biber %O --bblencoding=utf8 -u -U --output_safechars %B/\" -e \"$makeindex=q/upmendex %O -o %D %S/\" -e \"$dvipdf=q/dvipdfmx %O -o %D %S/\" -norc -gg -pdfdvi")
+(setq makeindex-command "latexmk -e \"$latex=q/uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 %S/\" -e \"$bibtex=q/upbibtex %O %B/\" -e \"$biber=q/biber %O --bblencoding=utf8 -u -U --output_safechars %B/\" -e \"$makeindex=q/upmendex %O -o %D %S/\" -e \"$dvipdf=q/dvipdfmx %O -o %D %S/\" -norc -gg -pdfdvi")
+(setq dvi2-command "rundll32 shell32,ShellExec_RunDLL SumatraPDF -reuse-instance")
+;(setq dvi2-command "texworks")
+;(setq dvi2-command "texstudio --pdf-viewer-only")
+(setq tex-pdfview-command "rundll32 shell32,ShellExec_RunDLL SumatraPDF -reuse-instance")
+;(setq tex-pdfview-command "texworks")
+;(setq tex-pdfview-command "texstudio --pdf-viewer-only")
+(setq dviprint-command-format "powershell -Command \"& {$r = Write-Output %s;$p = [System.String]::Concat('\"\"\"',[System.IO.Path]::GetFileNameWithoutExtension($r),'.pdf','\"\"\"');Start-Process AcroRd32 -ArgumentList ($p)}\"")
+(defun fwdsumatrapdf-forward-search ()
+  (interactive)
+  (progn
+    (process-kill-without-query
+     (start-process
+      "fwdsumatrapdf"
+      nil
+      "fwdsumatrapdf"
+      (expand-file-name
+       (concat (file-name-sans-extension (or YaTeX-parent-file
+                                             (save-excursion
+                                               (YaTeX-visit-main t)
+                                               buffer-file-name)))
+               ".pdf"))
+      (buffer-name)
+      (number-to-string (save-restriction
+                          (widen)
+                          (count-lines (point-min) (point))))))))
+(add-hook 'yatex-mode-hook
+          '(lambda ()
+             (define-key YaTeX-mode-map (kbd "C-c f") 'fwdsumatrapdf-forward-search)))
+(add-hook 'yatex-mode-hook
+          '(lambda ()
+             (auto-fill-mode -1)))
+;;
+;; RefTeX with YaTeX
+;;
+;(add-hook 'yatex-mode-hook 'turn-on-reftex)
+(add-hook 'yatex-mode-hook
+          '(lambda ()
+             (reftex-mode 1)
+             (define-key reftex-mode-map (concat YaTeX-prefix ">") 'YaTeX-comment-region)
+             (define-key reftex-mode-map (concat YaTeX-prefix "<") 'YaTeX-uncomment-region)))
 
