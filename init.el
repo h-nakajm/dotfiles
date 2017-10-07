@@ -95,7 +95,14 @@
 
 ;; テーマの設定
 ;; (load-theme 'zenburn' t)
-(load-theme 'atom-one-dark' t)
+;; CUI用設定を、以下に記述
+(if (not window-system) (progn
+	(load-theme 'wombat' t)
+))
+;; GUI用設定を、以下に記述
+(if window-system (progn
+	(load-theme 'atom-one-dark' t)
+))
 
 ;; Emacsのカラーテーマ
 ;; http://code.google.com/p/gnuemacscolorthemetest/
