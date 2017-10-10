@@ -1,24 +1,24 @@
 @if(0)==(0) echo off
 :: URL: http://bit.ly/cyginst
-:: æœ€çµ‚æ›´æ–°: 2017å¹´5æœˆ20æ—¥ 13:13:14
+:: ÅIXV: 2017”N5Œ20“ú 13:13:14
 setlocal
 
-REM --- ç·¨é›†ã™ã‚‹ã¨ã“ã‚(ã“ã“ã‹ã‚‰â†“) ---
+REM --- •ÒW‚·‚é‚Æ‚±‚ë(‚±‚±‚©‚ç«) ---
 set CYG_NAME=project1
 set CYG_BITS=32
 ::set CYG_CATS=Archive,Python
 set CYG_PKGS=procps,psmisc,tmux,zsh,emacs-w32,git,vim,curl,ruby,chere
 set DT_ICONS=1
 ::set CYG_HOME=.
-REM --- ç·¨é›†ã™ã‚‹ã¨ã“ã‚(ã“ã“ã¾ã§â†‘) ---
+REM --- •ÒW‚·‚é‚Æ‚±‚ë(‚±‚±‚Ü‚Åª) ---
 
-REM --- ãƒ‡ãƒãƒƒã‚°/ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º(ã“ã“ã‹ã‚‰â†“) ---
+REM --- ƒfƒoƒbƒO/ƒJƒXƒ^ƒ}ƒCƒY(‚±‚±‚©‚ç«) ---
 set CYG_DEBUG=0
 set CYG_SITE=http://mirrors.kernel.org/sourceware/cygwin/
 set CYG_LANG=ja
 set CYG_FONT=MS Gothic
 set CYG_FONT_HEIGHT=12
-REM --- ãƒ‡ãƒãƒƒã‚°/ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º(ã“ã“ã¾ã§â†‘) ---
+REM --- ƒfƒoƒbƒO/ƒJƒXƒ^ƒ}ƒCƒY(‚±‚±‚Ü‚Åª) ---
 
 cscript.exe //nologo //E:JScript "%~f0"
 call cyginst.bat SUBPROC
@@ -34,7 +34,7 @@ var fileName = SCRIPT_CURRENT_DIR + "\\cyginst.bat";
 try {
   downloadFile(url, fileName);
 } catch (e) {
-  WScript.Echo("cyginst.bat ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã›ã‚“ã§ã—ãŸ");
+  WScript.Echo("cyginst.bat ‚ğƒ_ƒEƒ“ƒ[ƒh‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½");
 }
 WScript.Quit();
 function downloadFile(url, fileName) {
@@ -48,3 +48,4 @@ function downloadFile(url, fileName) {
   strm.Open();
   strm.Write(http.responseBody);
   strm.SaveToFile(fileName, SaveOptionsEnum.adSaveCreateOverWrite);
+}
