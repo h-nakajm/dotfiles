@@ -15,17 +15,18 @@
 
 ;;; MELPA
 (defvar my-favorite-package-list
-  '(smartparens
-    tabbar
-    js2-mode
-    auto-complete
-    helm
-    undo-tree
-    anzu
-    expand-region
-    multiple-cursors
-    smartrep
+  '(anzu
     atom-one-dark-theme
+    auto-complete
+    expand-region
+    helm
+    js2-mode
+    multiple-cursors
+    rainbow-delimiters
+    smartparens
+    smartrep
+    tabbar
+    undo-tree
     yatex)
   "packages to be installed")
 
@@ -234,6 +235,10 @@
 ;; 対応する括弧を光らせる
 (show-paren-mode 1)
 
+;; 対応する括弧を強調させる
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
 ;; 括弧の自動補完
 (require 'smartparens-config)
 (smartparens-global-mode t)
@@ -406,8 +411,9 @@
   (interactive "p")
   (cua-incr-rectangle (- decriment)))
 (define-key cua--rectangle-keymap (kbd "M-I") 'cua-decr-rectangle)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; YaTeX
 ;;
