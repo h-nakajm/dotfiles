@@ -396,7 +396,16 @@
   '(("C-t"      . 'mc/mark-next-like-this)
     ("n"        . 'mc/mark-next-like-this)
     ("p"        . 'mc/mark-previous-like-this)))
+;; cua-mode
+(cua-mode t)
+(setq cua-enable-cua-keys nil)
 
+;; cua-modeで選択中にM-Iでデクリメント
+(defun cua-decr-rectangle (decriment)
+  "Decrement each line of CUA rectangle by prefix amount."
+  (interactive "p")
+  (cua-incr-rectangle (- decriment)))
+(define-key cua--rectangle-keymap (kbd "M-I") 'cua-decr-rectangle)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;
