@@ -115,7 +115,7 @@
 (keyboard-translate ?\C-h ?\C-?)
 
 ;; Ctrl+uを無効化(IMEの切り替えに利用)
-(global-unset-key "\C-u")
+;; (global-unset-key "\C-u")
 
 ;; C-=とC--でフォントサイズ変更
 (define-key global-map (kbd "C-=") 'text-scale-increase)
@@ -401,17 +401,57 @@
   '(("C-t"      . 'mc/mark-next-like-this)
     ("n"        . 'mc/mark-next-like-this)
     ("p"        . 'mc/mark-previous-like-this)))
-;; cua-mode
-(cua-mode t)
-(setq cua-enable-cua-keys nil)
 
-;; cua-modeで選択中にM-Iでデクリメント
-(defun cua-decr-rectangle (decriment)
-  "Decrement each line of CUA rectangle by prefix amount."
-  (interactive "p")
-  (cua-incr-rectangle (- decriment)))
-(define-key cua--rectangle-keymap (kbd "M-I") 'cua-decr-rectangle)
 
+;;矩形選択した位置に連番を挿入(M-iにバインド)
+(defvar my-rectangle-seq-format "%d")
+(defun my-sequence-rectangle (start end first incr format)
+  "Resequence each line of rectangle starting from FIRST.
+The numbers are formatted according to the FORMAT string.
+
+Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
+  (interactive
+   (progn (barf-if-buffer-read-only)
+          (list
+           (region-beginning)
+           (region-end)
+           (if current-prefix-arg
+               (prefix-numeric-value current-prefix-arg)
+             (string-to-number
+              (read-string "Start value: (0) " nil nil "0")))
+           (string-to-number
+            (read-string "Increment: (1) " nil nil "1"))
+           (read-string (concat "Format: (" my-rectangle-seq-format ") ")))))
+  (if (= (length format) 0)
+      (setq format my-rectangle-seq-format)
+    (setq my-rectangle-seq-format format))
+  (apply-on-rectangle 'my-string-rectangle-line start end
+                      '(lambda ()
+                         (insert (format format first))
+                         (setq first (+ first incr)))))
+
+(defun my-string-rectangle-line (startcol endcol func)
+  (move-to-column startcol t)
+  (funcall func))
+(provide 'my-sequence-rectangle)
+
+(define-key global-map (kbd "M-i") 'my-sequence-rectangle)
+
+;; ;; cua-mode
+;; (cua-mode t)
+;; (setq cua-enable-cua-keys nil)
+
+;; ;; cua-modeで選択中にM-Iでデクリメント
+;; (defun cua-decr-rectangle (decriment)
+;;   "Decrement each line of CUA rectangle by prefix amount."
+;;   (interactive "p")
+;;   (cua-incr-rectangle (- decriment)))
+;; (define-key cua--rectangle-keymap (kbd "M-I") 'cua-decr-rectangle)
+
+;; ;; ;; C-SPCをset-mark-commandに再定義
+;; (global-unset-key "\C-SPC")
+;; (define-key global-map (kbd "C-SPC") 'set-mark-command)
+;; ;; (define-key  (kbd "C-SPC") 'set-mark-command)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
