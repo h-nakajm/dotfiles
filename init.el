@@ -230,6 +230,7 @@
  '(package-selected-packages
    (quote
 	(smartrep multiple-cursors expand-region anzu undo-tree helm tabbar smartparens js2-mode auto-complete)))
+ '(send-mail-function (quote mailclient-send-it))
  '(tab-width 4))
 
 ;; 対応する括弧を光らせる
@@ -522,3 +523,17 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
              (define-key reftex-mode-map (concat YaTeX-prefix ">") 'YaTeX-comment-region)
              (define-key reftex-mode-map (concat YaTeX-prefix "<") 'YaTeX-uncomment-region)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Windowsの場合
+(when (equal system-type 'windows-nt)
+
+;; superキーの設定
+;; 左WindowsキーをSuperに設定
+(setq w32-pass-lwindow-to-system nil)
+(setq w32-lwindow-modifier 'super)
+
+;; C-s-jで行番号ジャンプ
+(define-key global-map (kbd "C-s-j") 'goto-line)
+
+)
