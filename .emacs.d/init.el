@@ -27,7 +27,8 @@
     smartrep
     tabbar
     undo-tree
-    yatex)
+    yatex
+    foreign-regexp)
   "packages to be installed")
 
 (require 'package)
@@ -530,4 +531,10 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
 
 (load-file "~/.emacs.d/conf/init_windows.el")
 
+)
+
+;; rubyの正規表現を使う
+(custom-set-variables
+ '(foreign-regexp/regexp-type 'ruby)
+ '(reb-re-syntax 'foreign-regexp)
 )
