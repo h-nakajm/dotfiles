@@ -85,3 +85,6 @@ bindkey "^[q" show_buffer_stack
 
 # c-Jでコマンド入力中に改行
 bindkey '^J' self-insert
+
+# 拡張ファイルグロブを有効化
+setopt extended_glob
