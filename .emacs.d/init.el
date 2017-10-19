@@ -534,6 +534,7 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
 )
 
 ;; rubyの正規表現を使う
+(require 'foreign-regexp)
 (custom-set-variables
  '(foreign-regexp/regexp-type 'ruby)
  '(reb-re-syntax 'foreign-regexp)
