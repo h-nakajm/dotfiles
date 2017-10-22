@@ -121,6 +121,8 @@
 ;; C-=とC--でフォントサイズ変更
 (define-key global-map (kbd "C-=") 'text-scale-increase)
 (define-key global-map (kbd "C--") 'text-scale-decrease)
+(define-key global-map (kbd "C-M-0") 'text-scale-adjust)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -170,12 +172,17 @@
 ;;                  :foreground "#800"
 					 :height 1.0)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(linum ((t (:inherit (shadow default) :height 1.0)))))
+;; 左側の行表示をフォントサイズ拡大・縮小に合わせて伸縮させる
+(defun linum-update-window-scale-fix (win)
+  "fix linum for scaled text"
+  (set-window-margins win
+          (ceiling (* (if (boundp 'text-scale-mode-step)
+                  (expt text-scale-mode-step
+                    text-scale-mode-amount) 1)
+              (if (car (window-margins))
+                  (car (window-margins)) 1)
+              ))))
+(advice-add #'linum-update-window :after #'linum-update-window-scale-fix)
 
 
 ;; 5 桁分の表示領域を確保する
