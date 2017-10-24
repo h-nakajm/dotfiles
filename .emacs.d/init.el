@@ -539,6 +539,7 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
 (when (equal system-type 'windows-nt)
 
 (load-file "~/.emacs.d/conf/init_windows.el")
+(load-file "~/.emacs.d/local/local.el")
 
 )
 
