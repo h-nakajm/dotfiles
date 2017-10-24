@@ -123,6 +123,15 @@
 (define-key global-map (kbd "C--") 'text-scale-decrease)
 (define-key global-map (kbd "C-M-0") 'text-scale-adjust)
 
+;; C-tで次のウィンドウに移動
+(define-key global-map (kbd "C-t") 'other-window)
+
+;; M-tで前のウィンドウに移動
+(defun prev-window ()
+   (interactive)
+   (other-window -1))
+ (define-key global-map (kbd "M-t") 'prev-window)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Alt+kで1行コピー
