@@ -58,9 +58,9 @@
 
 ;; UTF-8を使う
 (set-language-environment "Japanese")
-(prefer-coding-system 'utf-8)
-(setq coding-system-for-read 'utf-8)
-(setq coding-system-for-write 'utf-8)
+(prefer-coding-system 'utf-8-unix)
+(setq coding-system-for-read 'utf-8-unix)
+(setq coding-system-for-write 'utf-8-unix)
 
 ;; スタートアップメッセージを表示させない
 (setq inhibit-startup-message t)
