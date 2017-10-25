@@ -5,3 +5,7 @@
 
 ;; C-s-jで行番号ジャンプ
 (define-key global-map (kbd "C-s-j") 'goto-line)
+
+;; アクティブでないバッファを全て閉じる
+(global-set-key (kbd "C-s-b k") 'kill-other-buffers)
+
