@@ -549,7 +549,8 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
     (unless from-iess-p
       ;; ウィンドウが 1 つの状態で *.R を開いた場合はウィンドウを横に分割して R を表示する
       (when (one-window-p)
-        (split-window-below)
+        ;(split-window-below)
+		(split-window-right)
         (let ((buf (current-buffer)))
           (ess-switch-to-ESS nil)
           (switch-to-buffer-other-window buf)))
@@ -569,7 +570,8 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
       ;; R のプロセスが他になければウィンドウを分割する
       (if (> (length ess-process-name-list) 0)
           (when (one-window-p)
-            (split-window-horizontally)
+			;(split-window-horizontally)
+			(split-window-vertically)
             (other-window 1)))
     ;; *.R と R のプロセスを結びつける
     ;; これをしておかないと補完などの便利な機能が使えない
