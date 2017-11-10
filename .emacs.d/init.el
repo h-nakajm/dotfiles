@@ -632,7 +632,9 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
 
 ;(setq tex-command "ptex2pdf -u -l -ot \"-kanji=utf8 -no-guess-input-enc -synctex=1\"")
 ;(setq tex-command "ptex2pdf -l -od \"-f uptex-noEmbed-04.map -f otf-up-noEmbed.map\"")
-(setq tex-command "ptex2pdf -l -od \"-f uptex-kozuka-pr6n-04.map -f otf-up-kozuka-pr6n.map\"")
+;(setq tex-command "ptex2pdf -l -od \"-f uptex-kozuka-pr6n-04.map -f otf-up-kozuka-pr6n.map\"")
+(setq tex-command "ptex2pdf -l -od \"-f otf-ipaex.map\"")
+;(setq tex-command "ptex2pdf -l -od \"-f otf-ipa.map\"")
 ;(setq tex-command "lualatex -cmdx -synctex=1")
 ;(setq tex-command "latexmk")
 ;(setq tex-command "latexmk -e \"$latex=q/uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 %S/\" -e \"$bibtex=q/upbibtex %O %B/\" -e \"$biber=q/biber %O --bblencoding=utf8 -u -U --output_safechars %B/\" -e \"$makeindex=q/upmendex %O -o %D %S/\" -e \"$dvipdf=q/dvipdfmx %O -o %D %S/\" -norc -gg -pdfdvi")
