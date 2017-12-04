@@ -135,6 +135,13 @@
    (other-window -1))
  (define-key global-map (kbd "M-t") 'prev-window)
 
+;; フルスクリーン化
+(global-set-key (kbd "<C-M-return>") 'toggle-frame-fullscreen)
+
+;; ctrl-mause_wheelでフォント拡大・縮小
+(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Alt+kで1行コピー
