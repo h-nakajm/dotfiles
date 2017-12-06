@@ -285,6 +285,11 @@
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#b14770")
 
+;; 選択領域の色
+;; 色確認: M-x list-colors-display
+;; dark slate blue
+(set-face-background 'region "#483d8b")
+
 ;; タブ幅
 (custom-set-variables
 ;; custom-set-variables was added by Custom.
