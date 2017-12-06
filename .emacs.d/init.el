@@ -290,6 +290,14 @@
 ;; dark slate blue
 (set-face-background 'region "#483d8b")
 
+;; カーソルの色
+;; dodger blue
+(set-face-background 'cursor "#1e90ff")
+
+;; mode-lineの色
+;; SlateBlue4
+(set-face-background 'mode-line "#473c8b")
+
 ;; タブ幅
 (custom-set-variables
 ;; custom-set-variables was added by Custom.
