@@ -388,6 +388,55 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'powerline)
+(powerline-default-theme)
+
+(set-face-attribute
+ 'tabbar-default nil
+ :family "Meiryo UI"
+ :family "Meiryo UI"
+ :background "#34495E"
+ :foreground "#fff"
+ :bold nil
+ :height 0.95
+ )
+(set-face-attribute
+ 'tabbar-unselected nil
+ :background "#34495E"
+ :foreground "#fff"
+ :bold nil
+ :box nil
+)
+(set-face-attribute
+ 'tabbar-selected nil
+ :background "purple3"
+ :foreground "#fff"
+ :bold nil
+ :box nil
+ )
+(set-face-attribute
+ 'tabbar-modified nil
+; :background ""
+ :foreground "IndianRed1"
+ :bold t
+ :box nil
+)
+(set-face-attribute
+ 'tabbar-button nil
+ :box nil)
+(set-face-attribute
+ 'tabbar-separator nil
+ :height 2.0)
+
+;;----- 左側のボタンを消す
+(dolist (btn '(tabbar-buffer-home-button
+               tabbar-scroll-left-button
+               tabbar-scroll-right-button))
+  (set btn (cons (cons "" nil)
+                 (cons "" nil))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; for javascript
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -717,10 +766,10 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
 
 )
 
-;; rubyの正規表現を使う
-(require 'foreign-regexp)
-(custom-set-variables
- '(foreign-regexp/regexp-type 'ruby)
- '(reb-re-syntax 'foreign-regexp)
-)
+;; ;; rubyの正規表現を使う
+;; (require 'foreign-regexp)
+;; (custom-set-variables
+;;  '(foreign-regexp/regexp-type 'ruby)
+;;  '(reb-re-syntax 'foreign-regexp)
+;; )
 
