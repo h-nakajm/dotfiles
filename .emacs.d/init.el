@@ -619,7 +619,7 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
     (setq ess-fancy-comments nil)
     (setq ess-loaded-p t)
     (unless from-iess-p
-      ;; ウィンドウが 1 つの状態で *.R を開いた場合はウィンドウを横に分割して R を表示する
+      ;; ウィンドウが 1 つの状態で *.R を開いた場合はウィンドウを左右に分割して R を表示する
       (when (one-window-p)
         ;(split-window-below)
 		(split-window-right)
@@ -757,8 +757,39 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
              (define-key reftex-mode-map (concat YaTeX-prefix "<") 'YaTeX-uncomment-region)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; for avy-migemo
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'migemo)
+(setq migemo-command "cmigemo")
+;(setq migemo-options '("-q" "--emacs" "-i" "\a"))
+(setq migemo-options '("-q" "--emacs" "-i" "\g"))
+(setq migemo-dictionary (expand-file-name "~/.emacs.d/conf/utf-8/migemo-dict"))
+;(setq migemo-dictionary "C:/cyginst/project1/home/utf-8/migemo-dict")
+(setq migemo-user-dictionary nil)
+(setq migemo-regex-dictionary nil)
+(setq migemo-coding-system 'utf-8-unix)
+(load-library "migemo")
+(migemo-init)
+
+;; `avy-migemo-mode' overrides avy's predefined functions using `advice-add'.
+(require 'avy-migemo)
+(avy-migemo-mode 1)
+(global-set-key (kbd "M-g m m") 'avy-migemo-mode)
+
+(setq avy-timeout-seconds nil)
+(global-set-key (kbd "C-M-;") 'avy-migemo-goto-char-timer)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Windowsの場合
+;; - 左windowsキーをsuperキーに設定
+;; - local.elの読み込み(テスト用，コミットしない)
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (when (equal system-type 'windows-nt)
 
 (load-file "~/.emacs.d/conf/init_windows.el")
