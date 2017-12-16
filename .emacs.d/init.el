@@ -15,23 +15,27 @@
 
 ;;; MELPA
 (defvar my-favorite-package-list
-  '(anzu
+  '(
+    anzu
     atom-one-dark-theme
     auto-complete
+    avy-migemo
 	ess
 	e2wm-R
     expand-region
+    foreign-regexp
     helm
 	inlineR
     js2-mode
     multiple-cursors
+    powerline
     rainbow-delimiters
     smartparens
     smartrep
     tabbar
     undo-tree
     yatex
-    foreign-regexp)
+    )
   "packages to be installed")
 
 (require 'package)
