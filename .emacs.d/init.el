@@ -784,7 +784,7 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
 (global-set-key (kbd "M-g m m") 'avy-migemo-mode)
 
 (setq avy-timeout-seconds nil)
-(global-set-key (kbd "C-M-;") 'avy-migemo-goto-char-timer)
+(global-set-key (kbd "C-M-j") 'avy-migemo-goto-char-timer)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
