@@ -304,17 +304,6 @@
 
 ;; タブ幅
 (custom-set-variables
-;; custom-set-variables was added by Custom.
-;; If you edit it by hand, you could mess it up, so be careful.
-;; Your init file should contain only one such instance.
-;; If there is more than one, they won't work right.
- '(anzu-deactivate-region t)
- '(anzu-mode-lighter "")
- '(anzu-search-threshold 1000)
- '(package-selected-packages
-   (quote
-	(smartrep multiple-cursors expand-region anzu undo-tree helm tabbar smartparens js2-mode auto-complete)))
- '(send-mail-function (quote mailclient-send-it))
  '(tab-width 4))
 
 ;; 対応する括弧を光らせる
@@ -499,6 +488,17 @@
 ;; 検索時に全体数と現在の位置を表示
 ;; 常にanzu-modeを有効化
 (global-anzu-mode +1)
+(custom-set-variables
+'(anzu-deactivate-region t)
+ '(anzu-mode-lighter "")
+ '(anzu-search-threshold 1000)
+ '(anzu-use-migemo t)
+ '(anzu-replace-to-string-separator " => ")
+ '(package-selected-packages
+   (quote
+	(smartrep multiple-cursors expand-region anzu undo-tree helm tabbar smartparens js2-mode auto-complete)))
+ '(send-mail-function (quote mailclient-send-it))
+)
 
 ;; モードラインにモード名を表示しない
 ;; リージョン指定で置換を行った後，ハイライトを無効化
@@ -798,13 +798,14 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
 
 (load-file "~/.emacs.d/conf/init_windows.el")
 (load-file "~/.emacs.d/local/local.el")
+(load-file "~/.emacs.d/conf/keybinds.el")
 
 )
 
-;; ;; rubyの正規表現を使う
+;; rubyの正規表現を使う
 ;; (require 'foreign-regexp)
 ;; (custom-set-variables
-;;  '(foreign-regexp/regexp-type 'ruby)
+;;  '(foreign-regexp/regexp-type 'javascript)
 ;;  '(reb-re-syntax 'foreign-regexp)
 ;; )
 

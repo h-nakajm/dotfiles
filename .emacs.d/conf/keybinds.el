@@ -1,0 +1,6 @@
+(define-key global-map (kbd "C-q") 'nil)
+(define-key global-map (kbd "C-q g") 'goto-line)
+(define-key global-map (kbd "C-q k") 'kill-other-buffers)
+(define-key global-map (kbd "C-q r") 'anzu-query-replace)
+(define-key global-map (kbd "C-q C-r") 'anzu-query-replace-regexp)
+(define-key global-map (kbd "C-q C-M-r") 'anzu-query-replace-at-cursor-thing)
