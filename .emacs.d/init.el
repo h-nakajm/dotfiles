@@ -304,6 +304,16 @@
 
 ;; タブ幅
 (custom-set-variables
+ '(anzu-deactivate-region t)
+ '(anzu-mode-lighter "")
+ '(anzu-replace-to-string-separator " => ")
+ '(anzu-search-threshold 1000)
+ '(anzu-use-migemo t)
+ '(package-selected-packages
+   (quote
+	(visual-regexp-steroids smartrep multiple-cursors expand-region anzu undo-tree helm tabbar smartparens js2-mode auto-complete)))
+ '(reb-re-syntax (quote foreign-regexp))
+ '(send-mail-function (quote mailclient-send-it))
  '(tab-width 4))
 
 ;; 対応する括弧を光らせる
@@ -488,17 +498,6 @@
 ;; 検索時に全体数と現在の位置を表示
 ;; 常にanzu-modeを有効化
 (global-anzu-mode +1)
-(custom-set-variables
-'(anzu-deactivate-region t)
- '(anzu-mode-lighter "")
- '(anzu-search-threshold 1000)
- '(anzu-use-migemo t)
- '(anzu-replace-to-string-separator " => ")
- '(package-selected-packages
-   (quote
-	(smartrep multiple-cursors expand-region anzu undo-tree helm tabbar smartparens js2-mode auto-complete)))
- '(send-mail-function (quote mailclient-send-it))
-)
 
 ;; モードラインにモード名を表示しない
 ;; リージョン指定で置換を行った後，ハイライトを無効化
@@ -805,7 +804,7 @@ Called from a program, takes five args; START, END, FIRST, INCR and FORMAT."
 ;; rubyの正規表現を使う
 ;; (require 'foreign-regexp)
 ;; (custom-set-variables
-;;  '(foreign-regexp/regexp-type 'javascript)
+;;  '(foreign-regexp/regexp-type 'ruby)
 ;;  '(reb-re-syntax 'foreign-regexp)
 ;; )
 
