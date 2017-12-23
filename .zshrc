@@ -70,10 +70,14 @@ setopt correct
 # 最後のバックスラッシュを自動で削除しない
 setopt noautoremoveslash
 
+## cdr
+autoload -Uz add-zsh-hock
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+
 # zsh-syntax-highlighting
-if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-	source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+# 	source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# fi
 
 show_buffer_stack() {
   POSTDISPLAY="
@@ -88,3 +92,38 @@ bindkey '^J' self-insert
 
 # 拡張ファイルグロブを有効化
 setopt extended_glob
+
+# Ctrl+Dでログアウトしてしまうことを防ぐ
+setopt IGNOREEOF
+
+# git 関連のalias
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+
+# zplug
+source ~/.zplug/init.zsh
+
+# zplug "zplug/zplug", hook-build:"zplug --self-manage"
+zplug "mollifier/anyframe"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-history-substring-search"
+# zplug "kagamilove0707/moonline.zsh"
+# zplug "percol/percol"
+
+if ! zplug check --verbose; then
+    printf "インストールしますか？[y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+
+# anyframe keybinds
+# percol-keybinds: http://blog.shibayu36.org/entry/2013/10/06/184146
+
+bindkey '^x^d' anyframe-widget-cdr
+# bindkey '^x^r' anyframe-widget-execute-history
+bindkey '^x^r' anyframe-widget-put-history
