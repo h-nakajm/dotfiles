@@ -5,3 +5,4 @@
 (define-key global-map (kbd "C-q C-r") 'anzu-query-replace-regexp)
 (define-key global-map (kbd "C-q C-M-r") 'anzu-query-replace-at-cursor-thing)
 (define-key global-map (kbd "C-q d") 'delete-trailing-whitespace)
+(define-key global-map (kbd "C-q t") 'toggle-truncate-lines)
