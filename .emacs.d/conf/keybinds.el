@@ -5,4 +5,6 @@
 (define-key global-map (kbd "C-q C-r") 'anzu-query-replace-regexp)
 (define-key global-map (kbd "C-q C-M-r") 'anzu-query-replace-at-cursor-thing)
 (define-key global-map (kbd "C-q d") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-q o") 'helm-recentf)
+(global-set-key (kbd "C-q i") (lambda () (interactive) (switch-to-buffer (find-file-noselect "~/.emacs.d/init.el")))) ; init.elを開く
 (define-key global-map (kbd "C-q t") 'toggle-truncate-lines)
