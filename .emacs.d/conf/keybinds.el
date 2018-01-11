@@ -1,4 +1,5 @@
 (define-key global-map (kbd "C-q") 'nil)
+(define-key global-map (kbd "C-q c") 'avy-copy-line)
 (define-key global-map (kbd "C-q g") 'goto-line)
 (define-key global-map (kbd "C-q k") 'kill-other-buffers)
 (define-key global-map (kbd "C-q r") 'anzu-query-replace)
